@@ -1,4 +1,5 @@
 from email.policy import default
+from enum import auto
 from tokenize import group
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User
@@ -31,6 +32,7 @@ class Question(models.Model):
     question=models.CharField(null=False,max_length=100)
     created_at=models.DateField(auto_now_add=True,null=False)
     updated_at=models.DateField(auto_now=True,null=False)
+    date_question=models.DateField(null=False)
 
     class Meta:
         db_table="question"

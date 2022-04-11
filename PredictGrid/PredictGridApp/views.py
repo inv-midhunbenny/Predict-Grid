@@ -1,5 +1,6 @@
 from audioop import reverse
 from email import message
+from multiprocessing import context
 from pickletools import optimize
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -10,13 +11,30 @@ from django.utils.decorators import method_decorator
 
 from PredictGridApp.models import *
 from PredictGridApp.forms import *
+from django.contrib.auth import get_user_model
+from django.contrib.auth import logout
+
+User = get_user_model()
 
 # Create your views here.
 
+def get_user_model():
+    """
+    Return the User model that is active in this project.
+    """
+    try:
+        return django_apps.get_model(settings.AUTH_USER_MODEL, require_ready=False)
+    except ValueError:
+        raise ImproperlyConfigured("AUTH_USER_MODEL must be of the form 'app_label.model_name'")
+    except LookupError:
+        raise ImproperlyConfigured(
+            "AUTH_USER_MODEL refers to model '%s' that has not been installed" % settings.AUTH_USER_MODEL
+        )
+
 class Login(TemplateView):
-    model = User
+    model =User 
     form_class = LoginForm
-    template_class = "PredictGridApp/login.html"
+    template_class = "login.html"
     context = {}
 
     def get(self, request, *args, **kwargs):
@@ -34,10 +52,18 @@ class Login(TemplateView):
             login(request, user)
             if user.is_authenticated:
                 obj1 = User.objects.get(username=user)
-                print(obj1)
+                return redirect('ipl_result')
         else:
             message.error(request,"Invalid login")
             return redirect(reverse)
+
+class Logout(TemplateView):
+
+    def get(self, request):
+        logout(request)
+        return redirect('login')
+
+
 
 class Result(TemplateView):
     model = UserAnswer
@@ -49,4 +75,7 @@ class Result(TemplateView):
         self.context['question'] = Question.objects.all()
         self.context['option'] = Option.objects.all()
         self.context['result'] = self.form_class
+        self.context['name']=request.user.username
+        # print("user ------>>>>>>>>>>>>>>>",request.user.username)
+        # print('------->>>>type',type(request.user))
         return render (request, self.template_class, self.context)
