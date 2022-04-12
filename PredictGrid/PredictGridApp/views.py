@@ -69,7 +69,7 @@ class Logout(TemplateView):
 class Result(TemplateView):
     model = UserAnswer
     form_class = UserAnswerForm()
-    template_class = 'poll.html'
+    template_class = 'polls.html'
     context = {}
     
     def get(self, request, *args, **kwargs):
@@ -81,3 +81,4 @@ class Result(TemplateView):
         self.context['result'] = self.form_class
         self.context['name']=request.user.username
         return render (request, self.template_class, self.context)
+
