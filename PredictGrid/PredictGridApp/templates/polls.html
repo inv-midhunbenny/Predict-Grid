@@ -118,15 +118,40 @@ body {
 
         function updateCount (id)
     {
-        var count=jQuery("#"+id).val();
-        
-        jQuery("#noOfChar").html(100 - parseInt(count));
+        var count=jQuery("#"+id).val(); 
+        q = 0;   
+        if (q != 0){
+            var q = (q - parseInt(count));
+        }
+        else {
+            var q = (100 - parseInt(count));
+        }
+        console.log(q)  
+        jQuery("#noOfChar").html(q);
     }
         $("#inputbox1").keyup(function () {
         updateCount("inputbox1");
     });
+    $("#inputbox2").keyup(function () {
+        updateCount("inputbox2");
+    });
+    $("#inputbox3").keyup(function () {
+        updateCount("inputbox3");
+    });
+    $("#inputbox4").keyup(function () {
+        updateCount("inputbox4");
+    });
     $("#inputbox1").keypress(function () {
         updateCount("inputbox1");
+    });
+    $("#inputbox2").keypress(function () {
+        updateCount("inputbox2");
+    });
+    $("#inputbox3").keypress(function () {
+        updateCount("inputbox3");
+    });
+    $("#inputbox4").keypress(function () {
+        updateCount("inputbox4");
     });
     $("#inputbox1").keydown(function () {
         updateCount("inputbox1");
@@ -134,20 +159,22 @@ body {
     });
     </script>
 
-
-<div class="container mt-sm-5 my-1">
+<form method = "POST">
+{% csrf_token %}
+    <div class="container mt-sm-5 my-1">
 
     <div class="question ml-sm-5 pl-sm-5 pt-2">
         <div class="py-2 h5"><b>{{question.question}} <span id="noOfChar">100</span>  coins</b></div>&nbsp;
         <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options"> 
-            <label >{{option.option4}}  <input id="inputbox1" type="text" size="10" >  </label>
-             <label >{{option.option3}}   <input id="inputbox2" type="text" size="10">  </label> 
-             <label >{{option.option2}}   <input id="inputbox3" type="text" size="10"></label>
-              <label >{{option.option1}}   <input id="inputbox4" type="text" size="10">  </label> 
+            <label >{{option.option4}}  <input id="inputbox1" type="text" size="10" name = 'option4'>  </label>
+             <label >{{option.option3}}   <input id="inputbox2" type="text" size="10" name = 'option3'>  </label> 
+             <label >{{option.option2}}   <input id="inputbox3" type="text" size="10" name = 'option2'></label>
+              <label >{{option.option1}}   <input id="inputbox4" type="text" size="10" name = 'option1'>  </label> 
         </div>
     </div>
     <div class="d-flex align-items-center pt-3">
         <!-- <div id="prev"> <button class="btn btn-primary">Previous</button> </div> -->
-        <div class="ml-auto mr-sm-5"> <button class="btn btn-success">Submit</button> </div>
+        <input type="submit" value="OK">
     </div>
 </div>
+</form>

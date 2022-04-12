@@ -69,7 +69,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Predict IPL</a>
+            <a class="nav-link" href="{% url 'ipl_result' %}">Predict IPL</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled">More</a>
@@ -79,7 +79,7 @@
         <div class="d-flex">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <h4>{{name}}</h4>
+              <h4>{{request.user}}</h4>
             </li>
             </ul>
         </div>
@@ -163,7 +163,7 @@
 
         <h2>Indian Premier League</h2>
         <p>Predict correctly and score coins. Reach the top position and who knows you might have your Boom Chicka Wah Wah!</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'ipl_result' %}">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <image src="{% static 'img/icl.jpg' %}" class="bd-placeholder-img rounded-circle" height="140" width="140"/>

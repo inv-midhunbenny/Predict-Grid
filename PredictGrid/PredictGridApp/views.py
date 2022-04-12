@@ -53,7 +53,7 @@ class Login(TemplateView):
             login(request, user)
             if user.is_authenticated:
                 obj1 = User.objects.get(username=user)
-                return redirect('ipl_result')
+                return redirect('home')
         else:
             message.error(request,"Invalid login")
             return redirect(reverse)
@@ -66,6 +66,7 @@ class Logout(TemplateView):
 
 
 
+@method_decorator(login_required,name='dispatch')
 class Result(TemplateView):
     model = UserAnswer
     form_class = UserAnswerForm()
@@ -79,6 +80,24 @@ class Result(TemplateView):
         option  =  Option.objects.filter(question_id = question).first()
         self.context['option'] = option
         self.context['result'] = self.form_class
-        self.context['name']=request.user.username
+        self.context['name'] = request.user.username
         return render (request, self.template_class, self.context)
 
+
+    def post(self, request, *args, **kwargs):
+        option4 = request.POST['option4']
+        option3 = request.POST['option3']
+        option2 = request.POST['option2']
+        option1 = request.POST['option1']
+        username = request.user
+        qs = UserAnswer(option1 = option1, option2 = option2, option3 = option3, option4= option4,user_id= username)
+        qs.save()
+        # form = UserAnswerForm(request.POST)
+        # if form.is_valid():
+        #     form.save()
+        return redirect('home')
+@method_decorator(login_required,name='dispatch')
+class Home(TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'result.html')
