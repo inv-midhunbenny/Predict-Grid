@@ -46,7 +46,9 @@ class Option(models.Model):
     status=models.BooleanField(null=False)
     created_at=models.DateField(auto_now_add=True,null=False)
     updated_at=models.DateField(auto_now=True,null=False)
-
+    
+    def __str__(self) -> str:
+       return '{}, {}, {}, {}'.format(self.option4, self.option3, self.option2, self.option1)
     class Meta:
         db_table="option"
 

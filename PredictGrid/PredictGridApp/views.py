@@ -1,4 +1,5 @@
 from audioop import reverse
+from datetime import datetime
 from email import message
 from multiprocessing import context
 from pickletools import optimize
@@ -68,14 +69,15 @@ class Logout(TemplateView):
 class Result(TemplateView):
     model = UserAnswer
     form_class = UserAnswerForm()
-    template_class = 'result.html'
+    template_class = 'poll.html'
     context = {}
     
     def get(self, request, *args, **kwargs):
-        self.context['question'] = Question.objects.all()
-        self.context['option'] = Option.objects.all()
+        today = datetime.today()
+        question =  Question.objects.filter(date_question = today).first()
+        self.context['question'] = question
+        option  =  Option.objects.filter(question_id = question).first()
+        self.context['option'] = option
         self.context['result'] = self.form_class
         self.context['name']=request.user.username
-        # print("user ------>>>>>>>>>>>>>>>",request.user.username)
-        # print('------->>>>type',type(request.user))
         return render (request, self.template_class, self.context)
