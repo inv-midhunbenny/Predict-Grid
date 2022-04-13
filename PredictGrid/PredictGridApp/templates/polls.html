@@ -1,180 +1,255 @@
 <head>
- <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
- <link  href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
- <link  href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>IPL Prediction - PredictGrid</title>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
-}
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
 
-body {
-    background-color: #333
-}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
 
-.container {
-    background-color: #555;
-    color: #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    font-family: 'Montserrat', sans-serif;
-    max-width: 700px
-}
 
-.container>p {
-    font-size: 32px
-}
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-.question {
-    width: 75%
-}
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
 
-.options {
-    position: relative;
-    padding-left: 40px
-}
 
-#options label {
-    display: block;
-    margin-bottom: 15px;
-    font-size: 14px;
-    cursor: pointer
-}
 
-.options input {
-    opacity: 0
-}
 
-.checkmark {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #555;
-    border: 1px solid #ddd;
-    border-radius: 50%
-}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
-.options input:checked~.checkmark:after {
-    display: block
-}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.options .checkmark:after {
-    content: "";
-    width: 10px;
-    height: 10px;
-    display: block;
-    background: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 300ms ease-in-out 0s
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
 
-.options input[type="radio"]:checked~.checkmark {
-    background: #21bf73;
-    transition: 300ms ease-in-out 0s
-}
+        body {
+            background-color: #333
+        }
 
-.options input[type="radio"]:checked~.checkmark:after {
-    transform: translate(-50%, -50%) scale(1)
-}
+        .container {
+            background-color: #555;
+            color: #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
+            max-width: 700px
+        }
 
-.btn-primary {
-    background-color: #555;
-    color: #ddd;
-    border: 1px solid #ddd
-}
+        .container>p {
+            font-size: 32px
+        }
 
-.btn-primary:hover {
-    background-color: #21bf73;
-    border: 1px solid #21bf73
-}
+        .question {
+            width: 75%
+        }
 
-.btn-success {
-    padding: 5px 25px;
-    background-color: #21bf73
-}
+        .options {
+            position: relative;
+            padding-left: 40px
+        }
 
-@media(max-width:576px) {
-    .question {
-        width: 100%;
-        word-spacing: 2px
-    }
-}
-</style>
+        #options label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            cursor: pointer
+        }
+
+        .options input {
+            opacity: 0
+        }
+
+        .checkmark {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #555;
+            border: 1px solid #ddd;
+            border-radius: 50%
+        }
+
+        .options input:checked~.checkmark:after {
+            display: block
+        }
+
+        .options .checkmark:after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            display: block;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: 300ms ease-in-out 0s
+        }
+
+        .options input[type="radio"]:checked~.checkmark {
+            background: #21bf73;
+            transition: 300ms ease-in-out 0s
+        }
+
+        .options input[type="radio"]:checked~.checkmark:after {
+            transform: translate(-50%, -50%) scale(1)
+        }
+
+        .btn-primary {
+            background-color: #555;
+            color: #ddd;
+            border: 1px solid #ddd
+        }
+
+        .btn-primary:hover {
+            background-color: #21bf73;
+            border: 1px solid #21bf73
+        }
+
+        .btn-success {
+            padding: 5px 25px;
+            background-color: #21bf73
+        }
+
+        @media(max-width:576px) {
+            .question {
+                width: 100%;
+                word-spacing: 2px
+            }
+        }
+    </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    
-    $(document).ready(function(){
 
-        function updateCount (id)
-    {
-        var count=jQuery("#"+id).val(); 
-        q = 0;   
-        if (q != 0){
-            var q = (q - parseInt(count));
+    $(document).ready(function () {
+        // var q = jQuery("#noOfChar").html()
+
+        // q = parseInt(q)
+        let maxval = 100;
+        let minval = 0;
+
+        function updateCount(id) {
+
+            var txt1val = $.isNumeric(($('#inputbox1').val())) ? ($('#inputbox1').val()) : 0;
+            var txt2val = $.isNumeric(($('#inputbox2').val())) ? ($('#inputbox2').val()) : 0;
+            var txt3val = $.isNumeric(($('#inputbox3').val())) ? ($('#inputbox3').val()) : 0;
+            var txt4val = $.isNumeric(($('#inputbox4').val())) ? ($('#inputbox4').val()) : 0;
+            var sum = parseFloat(txt1val) + parseFloat(txt2val) + parseFloat(txt3val) + parseFloat(txt4val);
+
+
+            var result = maxval - sum;
+            // var count=jQuery("#"+id).val(); 
+
+
+            //    q = (q - parseInt(count));
+            //    console.log(count);
+
+            jQuery("#noOfChar").html(result);
         }
-        else {
-            var q = (100 - parseInt(count));
-        }
-        console.log(q)  
-        jQuery("#noOfChar").html(q);
-    }
-        $("#inputbox1").keyup(function () {
-        updateCount("inputbox1");
-    });
-    $("#inputbox2").keyup(function () {
-        updateCount("inputbox2");
-    });
-    $("#inputbox3").keyup(function () {
-        updateCount("inputbox3");
-    });
-    $("#inputbox4").keyup(function () {
-        updateCount("inputbox4");
-    });
-    $("#inputbox1").keypress(function () {
-        updateCount("inputbox1");
-    });
-    $("#inputbox2").keypress(function () {
-        updateCount("inputbox2");
-    });
-    $("#inputbox3").keypress(function () {
-        updateCount("inputbox3");
-    });
-    $("#inputbox4").keypress(function () {
-        updateCount("inputbox4");
-    });
-    $("#inputbox1").keydown(function () {
-        updateCount("inputbox1");
-    });
-    });
-    </script>
 
-<form method = "POST">
-{% csrf_token %}
-    <div class="container mt-sm-5 my-1">
+        $("#inputbox1").on("input", function () {
+            updateCount("inputbox1");
+        });
+        $("#inputbox2").on("input", function () {
+            updateCount("inputbox2");
+        });
+        $("#inputbox3").on("input", function () {
+            updateCount("inputbox3");
+        });
+        $("#inputbox4").on("input", function () {
+            updateCount("inputbox4");
+        });
+       
+    });
+</script>
 
-    <div class="question ml-sm-5 pl-sm-5 pt-2">
-        <div class="py-2 h5"><b>{{question.question}} <span id="noOfChar">100</span>  coins</b></div>&nbsp;
-        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options"> 
-            <label >{{option.option4}}  <input id="inputbox1" type="text" size="10" name = 'option4'>  </label>
-             <label >{{option.option3}}   <input id="inputbox2" type="text" size="10" name = 'option3'>  </label> 
-             <label >{{option.option2}}   <input id="inputbox3" type="text" size="10" name = 'option2'></label>
-              <label >{{option.option1}}   <input id="inputbox4" type="text" size="10" name = 'option1'>  </label> 
-        </div>
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <h3 class="float-md-start mb-0">IPL</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <a class="float-md-start mb-0">Recreational Committee</a>
+                </nav>
+            </div>
+        </header>
+
+        {{question.question}}
+
+
+        <main class="px-3">
+
+            <!-- {{ option }} -->
+
+            <html>
+            <form method="post">
+                {% csrf_token %}
+                <div class="container mt-sm-5 my-1">
+
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5"><b>{{question.question}} <span id="noOfChar">100</span> coins</b></div>
+                        &nbsp;
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label>{{option.option4}} <input id="inputbox1" type="text" size="10" name='option4'>
+                            </label>
+                            <label>{{option.option3}} <input id="inputbox2" type="text" size="10" name='option3'>
+                            </label>
+                            <label>{{option.option2}} <input id="inputbox3" type="text" size="10"
+                                    name='option2'></label>
+                            <label>{{option.option1}} <input id="inputbox4" type="text" size="10" name='option1'>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+
+                </div>
+            </form>
+
+            </html>
+
+
+        </main>
+
+        <footer class="mt-auto text-white-50">
+            <p>IPL Prediction, by <a href="#" class="text-white">Recreational Committee</a>.</p>
+        </footer>
     </div>
-    <div class="d-flex align-items-center pt-3">
-        <!-- <div id="prev"> <button class="btn btn-primary">Previous</button> </div> -->
-        <input type="submit" value="OK">
-    </div>
-</div>
-</form>
+</body>
